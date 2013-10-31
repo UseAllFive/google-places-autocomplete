@@ -3,7 +3,7 @@
 ## Requirements
 
 The following snippet must be placed in head:
-```javascript
+```html
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
 ```
 
