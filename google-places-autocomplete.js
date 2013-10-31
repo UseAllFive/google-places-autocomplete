@@ -1,6 +1,8 @@
-/*********************
-places-autocomplete.js
-*********************/
+/**********************************
+Name: google-places-autocomplete.js
+Author: Bret Morris
+Version: 1.0
+***********************************/
 
 (function() {
 
