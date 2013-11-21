@@ -10,10 +10,10 @@ The following snippet must be placed in head:
 ## Example usage
 
 ```javascript
-window.placesAutocomplete.init({
-    "opts": {
-        "componentRestrictions": {
-            "country": "br" //-- Limit to Brazil
+var autocomplete = window.placesAutocomplete.create({
+    'opts': {
+        'componentRestrictions': {
+            'country': 'br' //-- Limit to Brazil
         }
     }
 });
