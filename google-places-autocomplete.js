@@ -6,17 +6,17 @@ Version: 1.0
 
 (function() {
 
-    "use strict";
+    'use strict';
 
     var _autocomplete;
 
     //-- Default autocomplete settings
     var _default = {
-        "input_id": "location", //-- ID of target input
-        "opts": {},
+        'input_id': 'location', //-- ID of target input
+        'opts': {},
         //-- Function called on place select
         //   place_data (object) selected place data
-        "onChange": function(place) {
+        'onChange': function(place) {
             _log(place);
         }
     }
@@ -57,7 +57,7 @@ Version: 1.0
     }
 
     window.placesAutocomplete = {
-        "init": _init
+        'init': _init
     };
 
 })();
