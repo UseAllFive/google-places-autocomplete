@@ -8,6 +8,9 @@ Version: 1.0
 
     "use strict";
 
+    var Autocomplete = google.maps.places.Autocomplete;
+    var Event = google.maps.event;
+
     var _autocomplete;
 
     //-- Default autocomplete settings
@@ -29,9 +32,9 @@ Version: 1.0
         //-- Options for autocomplete
         var opts = options.opts;
         //-- Initiate autocomplete
-        _autocomplete = new google.maps.places.Autocomplete(input, opts);
+        _autocomplete = new Autocomplete(input, opts);
         //-- Listen for when a place has been selected from autocomplete
-        google.maps.event.addListener(_autocomplete, 'place_changed', function() {
+        Event.addListener(_autocomplete, 'place_changed', function() {
             var place = _autocomplete.getPlace();
             options.onChange(place);
         });
