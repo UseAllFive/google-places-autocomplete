@@ -1,3 +1,5 @@
+/* global google */
+
 /**********************************
 Name: google-places-autocomplete.js
 Author: Bret Morris
@@ -19,7 +21,7 @@ Version: 1.0
         'onChange': function(place) {
             _log(place);
         }
-    }
+    };
 
     //-- args (object) autocomplete settings
     function _init(args) {
