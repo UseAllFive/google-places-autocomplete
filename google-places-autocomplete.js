@@ -1,10 +1,12 @@
+/* global __scope__ */
+
 /**********************************
 Name: google-places-autocomplete.js
 Author: Bret Morris
 Version: 1.0
 ***********************************/
 
-(function() {
+(function(parent_scope) {
 
     "use strict";
 
@@ -56,8 +58,8 @@ Version: 1.0
         }
     }
 
-    window.placesAutocomplete = {
+    parent_scope.placesAutocomplete = {
         "init": _init
     };
 
-})();
+}(('undefined' === typeof __scope__) ? window : __scope__));
