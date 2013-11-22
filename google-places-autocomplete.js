@@ -23,7 +23,7 @@ Version: 1.0
 
     //-- args (object) autocomplete settings
     function _init(args) {
-        var options = _extend( _default, args );
+        var options = _extend(_default, args);
         //-- Set autocomplete on #location input
         var input = document.getElementById(options.input_id);
         //-- Options for autocomplete
@@ -40,9 +40,9 @@ Version: 1.0
     function _extend() {
         var i;
         var key;
-        for( i = 1; i < arguments.length; i++ ) {
-            for ( key in arguments[i] ) {
-                if( arguments[i].hasOwnProperty(key) ) {
+        for (i = 1; i < arguments.length; i++) {
+            for (key in arguments[i]) {
+                if (arguments[i].hasOwnProperty(key)) {
                     arguments[0][key] = arguments[i][key];
                 }
             }
@@ -51,7 +51,7 @@ Version: 1.0
     }
 
     function _log(val) {
-        if ( window.console && window.console.log ) {
+        if (window.console && window.console.log) {
             window.console.log(val);
         }
     }
