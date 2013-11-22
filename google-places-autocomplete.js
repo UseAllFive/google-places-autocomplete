@@ -13,6 +13,7 @@ Version: 1.0
     //-- Default autocomplete settings
     var _default = {
         "input_id": "location", //-- ID of target input
+        'input': null,
         "opts": {},
         //-- Function called on place select
         //   place_data (object) selected place data
@@ -25,7 +26,7 @@ Version: 1.0
     function _init(args) {
         var options = _extend( _default, args );
         //-- Set autocomplete on #location input
-        var input = document.getElementById(options.input_id);
+        var input = options.input || document.getElementById(options.input_id);
         //-- Options for autocomplete
         var opts = options.opts;
         //-- Initiate autocomplete
