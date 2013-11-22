@@ -30,7 +30,7 @@ Version: 1.1.0
 
     //-- args (object) autocomplete settings
     function _create(args) {
-        var options = _extend(_default, args);
+        var options = _extend({}, _default, args);
         //-- Set autocomplete on #location input
         var input = options.input || document.getElementById(options.input_id);
         //-- Options for autocomplete
