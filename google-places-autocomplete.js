@@ -23,7 +23,7 @@ Version: 1.0
 
     //-- args (object) autocomplete settings
     function _init(args) {
-        var options = _extend( _default, args );
+        var options = _extend( {}, _default, args );
         //-- Set autocomplete on #location input
         var input = document.getElementById(options.input_id);
         //-- Options for autocomplete
