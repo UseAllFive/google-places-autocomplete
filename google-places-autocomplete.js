@@ -15,6 +15,7 @@ Version: 1.1.0
 
     var _autocomplete;
     var _instances = [];
+    var _toArray = Array.prototype.slice.call.bind(Array.prototype.slice);
 
     //-- Default autocomplete settings
     var _default = {
@@ -57,34 +58,52 @@ Version: 1.1.0
         _instances.splice(index, 1);
     }
 
+    function _forEach(array, callback, context) {
+        if (null === array || undefined === array) {
+            return;
+        }
+        if (!array.slice) {
+            array = _toArray(array);
+        }
+        if (array.forEach) {
+            array.forEach(callback, context);
+            return;
+        }
+        for (var i = 0, l = array.length; i < l; i++) {
+            callback.call(context, array[i], i, array);
+        }
+    }
+
     function _extend() {
-        var i;
-        var key;
-        for (i = 1; i < arguments.length; i++) {
-            for (key in arguments[i]) {
-                if (arguments[i].hasOwnProperty(key)) {
-                    arguments[0][key] = arguments[i][key];
+        var target_obj = arguments[0];
+        _forEach(arguments, function(arg, i) {
+            if (0 === i) {
+                return;
+            }
+            for (var key in arg) {
+                if (arg.hasOwnProperty(key)) {
+                    target_obj[key] = arg[key];
                 }
             }
-        }
-        return arguments[0];
+        });
+        return target_obj;
     }
 
     function _indexOf(array, item) {
-        var i;
-        var l;
+        var index;
         if (null === array || undefined === array) {
             return -1;
         }
         if (array.indexOf) {
             return array.indexOf(item);
         }
-        for (i = 0, l = array.length; i < l; i++) {
-            if (item === array[i]) {
-                return i;
+        index = -1;
+        _forEach(array, function(val, i) {
+            if (item === val) {
+                index = 1;
             }
-        }
-        return -1;
+        });
+        return index;
     }
 
     function _log(val) {
