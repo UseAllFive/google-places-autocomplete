@@ -13,7 +13,9 @@ Version: 1.1.0
     var Autocomplete = google.maps.places.Autocomplete;
     var Event = google.maps.event;
 
+    var _CONTAINER_CLASS = 'pac-container';
     var _autocomplete;
+    var _container_context_name = null;
     var _instances = [];
     var _toArray = Array.prototype.slice.call.bind(Array.prototype.slice);
 
@@ -56,6 +58,22 @@ Version: 1.1.0
         Event.clearInstanceListeners(instance);
         instance.unbindAll();
         _instances.splice(index, 1);
+    }
+
+    function _setContainerContext(name) {
+        if (_container_context_name === name) {
+            return;
+        }
+        var class_name = name;
+        var containers = document.querySelectorAll('.'+_CONTAINER_CLASS);
+        var prev_class_name = _container_context_name;
+        _forEach(containers, function(elem, i, array) {
+            if (null !== prev_class_name) {
+                _toggleClassName(elem, prev_class_name, false);
+            }
+            _toggleClassName(elem, class_name, true);
+        });
+        _container_context_name = class_name;
     }
 
     function _forEach(array, callback, context) {
@@ -106,6 +124,25 @@ Version: 1.1.0
         return index;
     }
 
+    function _toggleClassName(elem, class_name, on) {
+        if (!class_name.length) {
+            return false;
+        }
+        var token = ' '+class_name;
+        if (elem.classList) {
+            if (on) {
+                elem.classList.add(class_name);
+            } else {
+                elem.classList.remove(class_name);
+            }
+            return;
+        }
+        elem.className = elem.className.replace(token, '');
+        if (on) {
+            elem.className += token;
+        }
+    }
+
     function _log(val) {
         if (window.console && window.console.log) {
             window.console.log(val);
@@ -115,7 +152,8 @@ Version: 1.1.0
     parent_scope.placesAutocomplete = {
         'init': _create,
         'create': _create, //-- `init` is deprecated.
-        'remove': _remove
+        'remove': _remove,
+        'setContainerContext': _setContainerContext,
     };
 
 }(('undefined' === typeof __scope__) ? window : __scope__));
