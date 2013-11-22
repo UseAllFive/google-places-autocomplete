@@ -11,6 +11,7 @@ The following snippet must be placed in head:
 
 ```javascript
 var autocomplete = window.placesAutocomplete.create({
+    'input': elem,
     'opts': {
         'componentRestrictions': {
             'country': 'br' //-- Limit to Brazil
