@@ -14,7 +14,6 @@ Version: 1.1.0
     var Event = google.maps.event;
 
     var _CONTAINER_CLASS = 'pac-container';
-    var _autocomplete;
     var _container_context_name = null;
     var _instances = [];
     var _toArray = Array.prototype.slice.call.bind(Array.prototype.slice);
