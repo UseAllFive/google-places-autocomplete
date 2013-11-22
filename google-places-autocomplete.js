@@ -3,14 +3,18 @@
 /**********************************
 Name: google-places-autocomplete.js
 Author: Bret Morris
-Version: 1.0
+Version: 1.1.0
 ***********************************/
 
 (function(parent_scope) {
 
     'use strict';
 
+    var Autocomplete = google.maps.places.Autocomplete;
+    var Event = google.maps.event;
+
     var _autocomplete;
+    var _instances = [];
 
     //-- Default autocomplete settings
     var _default = {
@@ -24,19 +28,32 @@ Version: 1.0
     };
 
     //-- args (object) autocomplete settings
-    function _init(args) {
+    function _create(args) {
         var options = _extend( _default, args );
         //-- Set autocomplete on #location input
         var input = document.getElementById(options.input_id);
         //-- Options for autocomplete
         var opts = options.opts;
         //-- Initiate autocomplete
-        _autocomplete = new google.maps.places.Autocomplete(input, opts);
+        var autocomplete = new Autocomplete(input, opts);
+        _instances.push(autocomplete);
         //-- Listen for when a place has been selected from autocomplete
-        google.maps.event.addListener(_autocomplete, 'place_changed', function() {
-            var place = _autocomplete.getPlace();
+        Event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
             options.onChange(place);
         });
+        return autocomplete;
+    }
+
+    //-- Doesn't remove from DOM.
+    function _remove(instance) {
+        var index = _indexOf(_instances, instance);
+        if (-1 === index) {
+            return false;
+        }
+        Event.clearInstanceListeners(instance);
+        instance.unbindAll();
+        _instances.splice(index, 1);
     }
 
     function _extend() {
@@ -52,6 +69,23 @@ Version: 1.0
         return arguments[0];
     }
 
+    function _indexOf(array, item) {
+        var i;
+        var l;
+        if (null === array || undefined === array) {
+            return -1;
+        }
+        if (array.indexOf) {
+            return array.indexOf(item);
+        }
+        for (i = 0, l = array.length; i < l; i++) {
+            if (item === array[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     function _log(val) {
         if ( window.console && window.console.log ) {
             window.console.log(val);
@@ -59,7 +93,9 @@ Version: 1.0
     }
 
     parent_scope.placesAutocomplete = {
-        'init': _init
+        'init': _create,
+        'create': _create, //-- `init` is deprecated.
+        'remove': _remove
     };
 
 }(('undefined' === typeof __scope__) ? window : __scope__));
