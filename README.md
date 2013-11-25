@@ -27,3 +27,12 @@ var autocomplete = window.placesAutocomplete.create({
 | input_id       	 | string        |            | "location"              |
 | opts         	     | object        |  	      | {}                      |
 | onChange           | function      | place   	  |	console.log place data  |
+
+## Methods
+
+| Method              | Status        | Arguments    | Example                                                      |
+|---------------------|---------------|--------------|--------------------------------------------------------------|
+| init                | deprecated    | options      | (see above)                                                  |
+| create              |               | options      | (see above)                                                  |
+| remove              |               | Autocomplete | placesAutocomplete.remove(autocomplete);                     |
+| setContainerContext |               | context      | placesAutocomplete.setContainerContext('component-context'); |
