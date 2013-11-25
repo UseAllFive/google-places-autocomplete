@@ -10,8 +10,7 @@ Version: 1.1.0
 
     'use strict';
 
-    var Autocomplete = google.maps.places.Autocomplete;
-    var Event = google.maps.event;
+    var _event = google.maps.event;
 
     var _CONTAINER_CLASS = 'pac-container';
     var _container_context_name = null;
@@ -38,10 +37,10 @@ Version: 1.1.0
         //-- Options for autocomplete
         var opts = options.opts;
         //-- Initiate autocomplete
-        var autocomplete = new Autocomplete(input, opts);
+        var autocomplete = new google.maps.places.Autocomplete(input, opts);
         _instances.push(autocomplete);
         //-- Listen for when a place has been selected from autocomplete
-        Event.addListener(autocomplete, 'place_changed', function() {
+        _event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
             options.onChange(place);
         });
@@ -54,7 +53,7 @@ Version: 1.1.0
         if (-1 === index) {
             return false;
         }
-        Event.clearInstanceListeners(instance);
+        _event.clearInstanceListeners(instance);
         instance.unbindAll();
         _instances.splice(index, 1);
     }
