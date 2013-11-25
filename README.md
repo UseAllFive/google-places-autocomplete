@@ -10,10 +10,11 @@ The following snippet must be placed in head:
 ## Example usage
 
 ```javascript
-window.placesAutocomplete.init({
-    "opts": {
-        "componentRestrictions": {
-            "country": "br" //-- Limit to Brazil
+var autocomplete = window.placesAutocomplete.create({
+    'input': elem,
+    'opts': {
+        'componentRestrictions': {
+            'country': 'br' //-- Limit to Brazil
         }
     }
 });
@@ -21,8 +22,17 @@ window.placesAutocomplete.init({
 
 ## Options
 
-| Option        	 | Type          | Arguments  | Default                 |
+| Option             | Type          | Arguments  | Default                 |
 |--------------------|---------------|------------|-------------------------|
-| input_id       	 | string        |            | "location"              |
-| opts         	     | object        |  	      | {}                      |
-| onChange           | function      | place   	  |	console.log place data  |
+| input_id           | string        |            | "location"              |
+| opts               | object        |            | {}                      |
+| onChange           | function      | place      | console.log place data  |
+
+## Methods
+
+| Method              | Status        | Arguments    | Example                                                      |
+|---------------------|---------------|--------------|--------------------------------------------------------------|
+| init                | deprecated    | options      | (see above)                                                  |
+| create              |               | options      | (see above)                                                  |
+| remove              |               | Autocomplete | placesAutocomplete.remove(autocomplete);                     |
+| setContainerContext |               | context      | placesAutocomplete.setContainerContext('component-context'); |

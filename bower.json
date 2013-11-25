@@ -1,0 +1,15 @@
+{
+    "name": "ua5-google-places-autocomplete",
+    "version": "1.1.0",
+    "ignore": [
+        "bower.json",
+        ".*"
+    ],
+    "keywords": [
+        "autocomplete",
+        "google",
+        "javascript",
+        "places",
+        "ua5"
+    ]
+}

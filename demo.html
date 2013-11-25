@@ -10,16 +10,40 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <style>
+        .pac-container.country-br * {
+            color: red;
+        }
+        .pac-container.country-us * {
+            color: blue;
+        }
+        </style>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
     </head>
     <body>
-        <input type="text" id="location" size="50">
+        <input type="text" id="location-1" size="50" value="Rio" />
+        <input type="text" id="location-2" size="50" value="Rio" />
         <script src="google-places-autocomplete.js"></script>
         <script>
-        window.placesAutocomplete.init({
+        var autocomplete_br = placesAutocomplete.create({
+            "input_id": "location-1",
+            "onChange": function() {
+                placesAutocomplete.setContainerContext('country-br');
+            },
             "opts": {
                 "componentRestrictions": {
                     "country": "br" //-- Limit to Brazil
+                },
+            }
+        });
+        var autocomplete_us = placesAutocomplete.create({
+            "input_id": "location-2",
+            "onChange": function() {
+                placesAutocomplete.setContainerContext('country-us');
+            },
+            "opts": {
+                "componentRestrictions": {
+                    "country": "us" //-- Limit to US
                 }
             }
         });
