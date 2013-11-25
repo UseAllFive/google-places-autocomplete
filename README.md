@@ -22,11 +22,11 @@ var autocomplete = window.placesAutocomplete.create({
 
 ## Options
 
-| Option        	 | Type          | Arguments  | Default                 |
+| Option             | Type          | Arguments  | Default                 |
 |--------------------|---------------|------------|-------------------------|
-| input_id       	 | string        |            | "location"              |
-| opts         	     | object        |  	      | {}                      |
-| onChange           | function      | place   	  |	console.log place data  |
+| input_id           | string        |            | "location"              |
+| opts               | object        |            | {}                      |
+| onChange           | function      | place      | console.log place data  |
 
 ## Methods
 
