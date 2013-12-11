@@ -28,18 +28,18 @@
         var autocomplete_br = placesAutocomplete.create({
             "input_id": "location-1",
             "onChange": function() {
-                placesAutocomplete.setContainerContext('country-br');
+                placesAutocomplete.setContainerContext('country-br south');
             },
             "opts": {
                 "componentRestrictions": {
                     "country": "br" //-- Limit to Brazil
-                },
+                }
             }
         });
         var autocomplete_us = placesAutocomplete.create({
             "input_id": "location-2",
             "onChange": function() {
-                placesAutocomplete.setContainerContext('country-us');
+                placesAutocomplete.setContainerContext('country-us north');
             },
             "opts": {
                 "componentRestrictions": {
