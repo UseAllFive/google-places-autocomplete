@@ -126,18 +126,21 @@ Version: 1.1.0
         if (!class_name.length) {
             return false;
         }
-        var token = ' '+class_name;
+        var string = ' '+class_name;
+        var tokens = class_name.split(' ');
         if (elem.classList) {
-            if (on) {
-                elem.classList.add(class_name);
-            } else {
-                elem.classList.remove(class_name);
-            }
+            _forEach(tokens, function(val, i) {
+                if (on) {
+                    elem.classList.add(val);
+                } else {
+                    elem.classList.remove(val);
+                }
+            });
             return;
         }
-        elem.className = elem.className.replace(token, '');
+        elem.className = elem.className.replace(string, '');
         if (on) {
-            elem.className += token;
+            elem.className += string;
         }
     }
 
